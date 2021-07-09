@@ -11,48 +11,6 @@ Share image to twitter and sms only works on `Android`
 It provides you with most of the popular sharing options
 With this plugin you can share on instagram stories and facebook stories and also copy to clipboard
 
-## Usage
-
-### Android Configuration
-
-#### Paste the following attribute in the `manifest` tag in the `android/app/src/main/AndroidManifest.xml`:
-
-```
- 		`xmlns:tools="http://schemas.android.com/tools"`
-```
-
-##### For example:
-
-```
-        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                package="your package...">
-```
-
-#### Add this piece of code in the `manifest/application` in the `android/app/src/main/AndroidManifest.xml`:
-
-```
- 		<provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.com.quyetthang.flutter_social_share"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            tools:replace="android:authorities">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
-```
-
-#### Create a xml file named `file_paths.xml` in the `app/src/main/res/xml` folder and paste this code in the file :
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <cache-path name="image" path="/"/>
-</paths>
-```
-
 ### iOS Configuration
 
 #### Add this to your `Info.plist` to use share on instagram and facebook story
@@ -118,6 +76,9 @@ FlutterSocialShare.copyToClipboard("This is Social Share plugin");
 #### shareTwitter
 
 ```
+//with image local (only Android)
+FlutterSocialShare.shareImageToTwitter(file)
+
 //without hashtags
 FlutterSocialShare.shareTwitter("This is Social Share plugin");
 
@@ -140,6 +101,9 @@ FlutterSocialShare.shareSms("This is Social Share Sms example");
 
 //with url link in message
 FlutterSocialShare.shareSms("This is Social Share Sms example",url: "https://your-url-here/");
+
+//with image local in message (only Android)
+FlutterSocialShare.shareImageToSMS(file)
 ```
 
 #### shareWhatsapp
